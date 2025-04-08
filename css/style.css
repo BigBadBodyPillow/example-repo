@@ -1,0 +1,367 @@
+:root {
+  --rainbow: linear-gradient(
+    to left,
+    #fef26a,
+    #fe8462,
+    #ff70cb,
+    #d270ff,
+    #743ad5,
+    #709df8,
+    #5bffbd,
+    #709df8,
+    #743ad5,
+    #d270ff,
+    #ff70cb,
+    #fe8462,
+    #fef26a
+  );
+
+  --accent-colour: #ff70cb;
+  --text-colour-dark: rgb(247, 237, 219);
+  --button-background-universal: 255, 112, 203;
+
+  --dark-background: rgb(0, 0, 0);
+  --dark-seprator: rgb(5, 5, 5);
+  --dark-seprator-child: rgb(10, 10, 10);
+  --dark-seprator-child-hover: rgb(15, 15, 15);
+  --dark-darkerer: rgb(20, 20, 20);
+
+  /* 
+    light mode colours because idk what looks good in lightmode,
+    i just hate it 
+    https://www.color-hex.com/color-palette/106748 
+    */
+  /* --light-background: rgb(250, 250, 250);
+    --light-seprator: rgb(228, 229, 241);
+    --light-seprator-child: rgb(210, 211, 219);
+    --light-seprator-child-hover: rgb(147, 148, 165);
+    --light-idk-yet: rgb(72, 75, 106); */
+
+  /* https://www.color-hex.com/color-palette/1055857 */
+  --light-background: rgb(255, 237, 244);
+  --light-seprator: rgb(255, 219, 233);
+  --light-seprator-child: rgb(236, 227, 255);
+  --light-seprator-child-hover: rgb(255, 211, 228);
+  --light-idk-yet: rgb(255, 164, 198);
+}
+
+.dark-mode {
+  background-color: var(--dark-background) !important;
+  color: var(--text-colour-dark) !important;
+
+  #cookie-consent-banner {
+    background-color: var(--dark-background) !important;
+  }
+  .dropdown-content {
+    background-color: var(--dark-seprator) !important;
+    box-shadow: 0px 1px 16px 0px rgba(255, 255, 255, 0.2);
+  }
+  .dropdown-content a {
+    color: var(--text-colour-dark) !important;
+  }
+  .dropdown-content a:hover {
+    background-color: var(--dark-seprator-child-hover) !important;
+  }
+  .dropdown-content:hover {
+    background-color: var(--dark-seprator-child) !important;
+  }
+  #fonts-select,
+  .username-form input {
+    border: 1px solid var(--dark-seprator-child-hover);
+    background-color: var(--dark-seprator);
+    color: var(--text-colour-dark);
+  }
+  #font:hover,
+  #username:hover {
+    background-color: var(--dark-seprator-child-hover);
+  }
+  #font:hover #fonts-select,
+  #font:hover .username-form input {
+    border-color: var(--dark-seprator-child-hover);
+    background-color: var(--dark-seprator-child-hover);
+  }
+  .dropdown-content:hover #fonts-select,
+  .dropdown-content:hover .username-form input {
+    background-color: var(--dark-seprator-child);
+  }
+  #fonts-select:hover,
+  .username-form input:hover {
+    border: 1px solid var(--dark-seprator);
+    background-color: var(--dark-seprator-child-hover) !important;
+  }
+  #snackbar {
+    background-color: var(--dark-seprator-child-hover);
+    color: var(--text-colour-dark);
+  }
+}
+
+/* my favourite font
+https://floriankarsten.github.io/space-grotesk/ */
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'space grotesk', 'Arial';
+}
+
+.rainbow-line {
+  /* that apparently the highest z index */
+  /* https://www.digitalocean.com/community/tutorials/css-z-index */
+  z-index: 2147483647;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 1px;
+
+  background-image: var(--rainbow);
+  background-size: 400%;
+  animation: rainbow-animation 100s infinite;
+}
+@keyframes rainbow-animation {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 400%;
+  }
+}
+
+#cookie-consent-banner {
+  width: 100%;
+  background-color: var(--light-background);
+  position: fixed;
+  bottom: 0;
+  padding: 10px;
+
+  display: flex;
+  text-align: center;
+
+  & p {
+    display: inline;
+  }
+  & button {
+    background-color: rgb(var(--button-background-universal));
+  }
+  & button:hover {
+    background-color: rgba(var(--button-background-universal), 0.8);
+  }
+}
+
+button {
+  font-family: 'space grotesk', 'Arial';
+  cursor: pointer;
+  border: none;
+  border-radius: 2px;
+}
+.theme-toggle-wrapper {
+  z-index: 1;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
+}
+#toggle-theme {
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.5rem;
+
+  line-height: 0;
+  vertical-align: middle;
+  background-color: #fef26a;
+}
+#toggle-theme:hover {
+  opacity: 0.8;
+}
+
+header {
+  height: fit-content;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  flex-grow: 0;
+  & img {
+    max-height: 5rem;
+  }
+}
+/* .settings-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  margin-right: 1rem;
+  height: fit-content;
+
+  font-size: 20px;
+} */
+
+.settings-dropdown {
+  /* float: right; */
+  position: absolute;
+  right: 0;
+  margin-right: 2rem;
+  margin-top: 1rem;
+  display: inline-block;
+}
+.settings-dropdown[open] #settings {
+  animation: none;
+}
+.settings-dropdown {
+  top: 2rem;
+}
+#settings {
+  min-width: 5rem;
+  line-height: 2rem;
+  height: 2rem;
+  padding: 0 1rem;
+  /* text-align: center; */
+  /* margin: auto; */
+  /* padding: 10px; */
+  text-align: center;
+
+  border-radius: 2px;
+  list-style: none;
+  cursor: pointer;
+  font-size: 1rem;
+  /* bottom: 0; */
+  color: black;
+  background-color: rgb(var(--button-background-universal));
+  animation: settings-animation 0.75s ease-in-out infinite;
+}
+#settings:hover {
+  background-color: rgba(var(--button-background-universal), 0.8);
+  color: var(--text-colour-dark);
+  animation: none;
+}
+/* #settings {
+  list-style: none;
+  cursor: pointer;
+  font-size: 1rem;
+  height: 2rem;
+  width: 100%;
+  bottom: 0;
+  padding-inline: 1rem;
+  background-color: rgb(var(--button-background-universal));
+  animation: settings-animation 0.75s ease-in-out infinite;
+} */
+
+.dropdown-content {
+  border-radius: 2px;
+  /* display: none; */
+  position: absolute;
+  right: 0;
+  background-color: var(--light-seprator);
+  width: max-content;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a,
+#font,
+#username {
+  /* border: 1px solid red; */
+  cursor: pointer;
+  font-size: 0.8rem;
+  border-radius: 2px;
+  /* color: black; */
+  margin: 0.5rem;
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  text-decoration: none;
+  display: block;
+  /* border: 1px solid red; */
+  border-radius: 2px;
+
+  /* background-color: var(--light-seprator-child); */
+}
+
+#reset-preferences {
+  margin-top: 0;
+}
+/* stop double margin scenarios */
+/* .dropdown-content a:first-child {
+  margin-bottom: none;
+}
+.dropdown-content a:last-child {
+  margin-top: none;
+  border: 1px solid red;
+} */
+/* .dropdown-content a:not(:first-child):not(:last-child) {
+  margin-block: none;
+} */
+
+.dropdown-content a:hover {
+  background-color: var(--light-seprator-child-hover);
+}
+.dropdown-content:hover {
+  background-color: var(--light-seprator-child);
+}
+.dropdown-content:hover #fonts-select,
+.dropdown-content:hover .username-form input {
+  background-color: var(--light-seprator-child);
+}
+
+/* .settings-dropdown:hover .dropdown-content {
+  display: block;
+} */
+
+/* .dropdown-content:hover #font {
+  height: 100px;
+} */
+#username {
+  margin-bottom: 0;
+}
+.font-form,
+.username-form {
+  padding-inline: 1rem;
+  margin-block: 0.5rem;
+}
+.username-form input {
+  width: 8.8rem;
+}
+#username-input {
+  font-family: 'Space Grotesk';
+}
+#fonts-select,
+.username-form input {
+  cursor: pointer;
+  padding: 0.2rem;
+  border: 1px solid var(--light-seprator-child-hover);
+  border-radius: 2px;
+  background-color: var(--light-seprator);
+  color: black;
+}
+
+#fonts-select:hover,
+.username-form input:hover {
+  border: 1px solid var(--light-seprator);
+  background-color: var(--light-seprator-child-hover) !important;
+}
+#font:hover,
+#username:hover {
+  background-color: var(--light-seprator-child-hover);
+}
+#font:hover #fonts-select,
+#font:hover .username-form input {
+  border-color: var(--light-seprator-child-hover);
+  background-color: var(--light-seprator-child-hover);
+}
+option[value='Space Grotesk'] {
+  font-family: 'Space Grotesk';
+}
+option[value='Arial'] {
+  font-family: 'Arial';
+}
+option[value='Times New Roman'] {
+  font-family: 'Times New Roman';
+}
+
+@keyframes settings-animation {
+  50% {
+    transform: translateY(10%);
+  }
+}

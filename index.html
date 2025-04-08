@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>JSON And Web Storage APIs</title>
+    <link rel="icon" href="assets/logo.webp" />
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/products.css" />
+    <link rel="stylesheet" href="css/toast.css" />
+    <!-- js -->
+    <script defer src="script/main.js"></script>
+    <script defer src="script/darkmode.js"></script>
+    <script defer src="script/font.js"></script>
+    <script defer src="script/preferences.js"></script>
+    <!-- cookies -->
+    <script defer src="script/cookies/cookie.js"></script>
+    <script defer src="script/cookies/username.js"></script>
+    <!--  sw -->
+    <script defer src="service-worker.js"></script>
+  </head>
+
+  <!-- i am aware that there is no checkout button -->
+  <body class="">
+    <div class="rainbow-line"></div>
+    <header>
+      <img src="assets/logo.webp" alt="logo for e-commerce web app company" />
+
+      <!-- <div class="settings-wrapper">
+        <div class="settings">click herer</div>
+        <div class="settings-dropdown-wrapper">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+      </div> -->
+
+      <details class="settings-dropdown">
+        <summary
+          id="settings"
+          aria-label="Collapisble menu containing user settings"
+        >
+          here
+        </summary>
+
+        <div class="dropdown-content">
+          <details>
+            <summary
+              id="username"
+              aria-label="Collapisble menu that allows you to change your username"
+            >
+              Enter Username
+            </summary>
+
+            <div class="username-form">
+              <input
+                id="username-input"
+                type="text"
+                name="username"
+                placeholder="Enter Username"
+                aria-label="Change your username"
+              />
+            </div>
+          </details>
+
+          <details>
+            <summary
+              id="font"
+              aria-label="Collapisble menu that allows you to change your font"
+            >
+              Change Font
+            </summary>
+
+            <form class="font-form">
+              <select name="fonts-select" id="fonts-select">
+                <option value="Space Grotesk">Space Grotesk</option>
+                <option value="Arial">Arial</option>
+                <option value="Times New Roman">Times New Roman</option>
+              </select>
+            </form>
+          </details>
+
+          <a
+            id="reset-preferences"
+            aria-label="Reset Preferences"
+            role="button"
+            aria-label="reset user preferences"
+            >Reset Preferences</a
+          >
+        </div>
+      </details>
+
+      <!--<section class="settings-dropdown">
+         <button id="settings" aria-label="settings dropdown">here</button>
+        <div class="dropdown-content">
+          <a id="username" aria-label="Change your username">Enter Username</a>
+          <a id="font" aria-labl="Change the font... ohh"
+            >Change Font -->
+      <!-- I have no idea how to fix this but if you hover over one of the options then go back to the dropdown it still closes-->
+      <!-- <form class="font-form" aria-label="Font selection">
+              <select
+                name="fonts-select"
+                id="fonts-select"
+                aria-label="font select box"
+              >
+                <option value="Space Grotesk">Space Grotesk</option>
+                <option value="Arial">Arial</option>
+                <option value="Times New Roman">Times New Roman</option>
+              </select>
+            </form>
+          </a>
+
+          <a aria-label="Reset Preferences">Reset Preferences</a>
+        </div> 
+      </section>-->
+    </header>
+
+    <main>
+      <!-- prices were generated with random extension -->
+      <section class="product-catalog">
+        <div class="product" id="product1" aria-label="product 1">
+          <img
+            src="assets/products/item1.webp"
+            aria-label="image of product 1"
+          />
+          <h2>Product 1</h2>
+          <p>Price : R <span id="price">64.23</span></p>
+          <button id="addToCart" aria-label="add product 1 to cart">
+            Add to cart
+          </button>
+        </div>
+        <div class="product" id="product2" aria-label="product 2">
+          <img
+            src="assets/products/item2.webp"
+            aria-label="image of product 2"
+          />
+          <h2>Product 2</h2>
+          <p>Price : R <span id="price">78.60</span></p>
+          <button id="addToCart" aria-label="add product 2 to cart">
+            Add to cart
+          </button>
+        </div>
+        <div class="product" id="product3" aria-label="product 3">
+          <img
+            src="assets/products/item3.webp"
+            aria-label="image of product 3"
+          />
+          <h2>Product 3</h2>
+          <p>Price : R <space id="price">24.18</space></p>
+          <button id="addToCart" aria-label="add product 3 to cart">
+            Add to cart
+          </button>
+        </div>
+        <div class="product" id="product4" aria-label="product 4">
+          <img
+            src="assets/products/item4.webp"
+            aria-label="image of product 4"
+          />
+          <h2>Product 4</h2>
+          <p>Price : R <span id="price">26.28</span></p>
+          <button id="addToCart" aria-label="add product 4 to cart">
+            Add to cart
+          </button>
+        </div>
+        <div class="product" id="product5" aria-label="product 5">
+          <img
+            src="assets/products/item5.webp"
+            aria-label="image of product 5"
+          />
+          <h2>Product 5</h2>
+          <p>Price : R <span id="price">35.10</span></p>
+          <button id="addToCart" aria-label="add product 5 to cart">
+            Add to cart
+          </button>
+        </div>
+        <div class="product" id="product6" aria-label="product 6">
+          <img
+            src="assets/products/item6.webp"
+            aria-label="image of product 6"
+          />
+          <h2>Product 6</h2>
+          <p>Price : R <span id="price">62.99</span></p>
+          <button id="addToCart" aria-label="add product 6 to cart">
+            Add to cart
+          </button>
+        </div>
+        <div class="product" id="product7" aria-label="product 7">
+          <img
+            src="assets/products/item7.webp"
+            aria-label="image of product 7"
+          />
+          <h2>Product 7</h2>
+          <p>Price : R <span id="price">61.44</span></p>
+          <button id="addToCart" aria-label="add product 7 to cart">
+            Add to cart
+          </button>
+        </div>
+        <div class="product" id="product8" aria-label="product 8">
+          <img
+            src="assets/products/item8.webp"
+            aria-label="image of product 8"
+          />
+          <h2>Product 8</h2>
+          <p>Price : R <span id="price">26.01</span></p>
+          <button id="addToCart" aria-label="add product 8 to cart">
+            Add to cart
+          </button>
+        </div>
+        <div class="product" id="product9" aria-label="product 9">
+          <img
+            src="assets/products/item9.webp"
+            aria-label="image of product 9"
+          />
+          <h2>Product 9</h2>
+          <p>Price : R <span id="price">7.53</span></p>
+          <button id="addToCart" aria-label="add product 9 to cart">
+            Add to cart
+          </button>
+        </div>
+      </section>
+
+      <aside class="cart" aria-label="shopping cart">
+        <!-- THE CHROME SCROLLBAR LOOKS SO BAD -->
+        <!-- https://i.imgur.com/bypezH4.png -->
+        <div class="cart-items"></div>
+        <div class="cart-footer">
+          <button class="clear-cart" onclick="clearCart()">Clear Cart</button>
+          <p>Total: R <span id="total-price">0</span></p>
+        </div>
+      </aside>
+    </main>
+    <div id="snackbar">
+      <h4>Files are being cached</h4>
+      <p>this speeds up loading</p>
+    </div>
+
+    <!-- from page 18/19 of 11-047_JSON and Web Storage APIs.pdf -->
+    <!-- Cookie consent banner (hidden by default with "display: none") -->
+    <div id="cookie-consent-banner" style="display: none">
+      <p>
+        We use cookies to improve your experience. By continuing, you accept our
+        <a href="/privacy-policy">Privacy Policy</a>.
+      </p>
+      <button id="accept-cookies">Accept Cookies</button>
+      <button id="decline-cookies">Decline</button>
+    </div>
+
+    <div class="theme-toggle-wrapper">
+      <button id="toggle-theme" class="light-button">☀︎</button>
+    </div>
+  </body>
+</html>
